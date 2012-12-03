@@ -1,0 +1,14 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace components "alatarus.components.*";
+
+global
+{
+	animationDuration: 1000;
+}
+
+components|CircularGauge
+{
+	skin-class: ClassReference("alatarus.skins.CircularGaugeSimpleSkin");
+}
