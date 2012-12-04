@@ -12,6 +12,9 @@ package alatarus.components
 		[SkinPart(required="false")]
 		public var marker:UIComponent;
 		
+		[SkinPart(required="false")]
+		public var axis:GaugeAxis;
+		
 		/**
 		 *  @private
 		 */
@@ -128,6 +131,25 @@ package alatarus.components
 			if (instance === marker)
 			{
 				rotateMarker(utilization);
+			}
+			else if (instance === axis)
+			{
+				axis.minimum = minimum;
+				axis.maximum = maximum;
+			}
+		}
+		
+		override protected function commitProperties():void
+		{
+			if (axis && (minChanged || maxChanged))
+			{
+				super.commitProperties();
+				axis.minimum = minimum;
+				axis.maximum = maximum;
+			}
+			else
+			{
+				super.commitProperties();
 			}
 		}
 	}

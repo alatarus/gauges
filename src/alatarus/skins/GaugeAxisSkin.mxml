@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:layouts="alatarus.layouts.*">
+    <!-- host component -->
+    <fx:Metadata>
+		[HostComponent("alatarus.components.GaugeAxis")]
+	</fx:Metadata>
+
+    <!-- SkinParts
+    name=ticksDisplay, type=spark.components.Group, required=false
+    name=majorTickPart, type=mx.core.IFactory, required=false
+    name=labelPart, type=mx.core.IFactory, required=true
+    name=labelsDisplay, type=spark.components.Group, required=false
+    name=minorTickPart, type=mx.core.IFactory, required=false
+    -->
+
+    <fx:Declarations>
+        <fx:Component id="labelPart">
+            <s:Label/>
+        </fx:Component>
+        <fx:Component id="majorTickPart">
+			<s:Rect 
+				width="5" height="2">
+				<s:fill>
+					<s:SolidColor color="0x085271"/>
+				</s:fill>
+			</s:Rect>
+        </fx:Component>
+    </fx:Declarations>
+	
+	<s:Group id="ticksDisplay"
+			 left="20" right="20" top="20" bottom="20">
+		<s:layout>
+			<layouts:EllipticalLayout startAngle="-180"
+									  endAngle="0"
+									  align="inside"
+									  rotateElements="true"/>
+		</s:layout>
+	</s:Group>
+	<s:Group id="labelsDisplay"
+			 left="20" right="20" top="20" bottom="20">
+		<s:layout>
+			<layouts:EllipticalLayout startAngle="-180"
+									  endAngle="0"
+									  align="outside"
+									  rotateElements="false"/>
+		</s:layout>
+	</s:Group>
+</s:Skin>
