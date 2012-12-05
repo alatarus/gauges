@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" version="3">
   <includeClasses>
-    <classEntry path="alatarus.components.GaugeAxis"/>
+    <classEntry path="alatarus.components.GaugeScale"/>
     <classEntry path="alatarus.layouts.EllipticalLayout"/>
-    <classEntry path="alatarus.skins.GaugeAxisSkin"/>
+    <classEntry path="alatarus.skins.GaugeScaleSkin"/>
     <classEntry path="alatarus.primitives.EllipseSlice"/>
     <classEntry path="alatarus.primitives.DonutSlice"/>
     <classEntry path="alatarus.primitives.ISlice"/>

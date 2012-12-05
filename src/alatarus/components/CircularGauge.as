@@ -13,7 +13,7 @@ package alatarus.components
 		public var marker:UIComponent;
 		
 		[SkinPart(required="false")]
-		public var axis:GaugeAxis;
+		public var axis:GaugeScale;
 		
 		/**
 		 *  @private

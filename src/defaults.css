@@ -13,7 +13,7 @@ components|CircularGauge
 	skin-class: ClassReference("alatarus.skins.CircularGaugeSimpleSkin");
 }
 
-components|GaugeAxis
+components|GaugeScale
 {
-	skin-class: ClassReference("alatarus.skins.GaugeAxisSkin");
+	skin-class: ClassReference("alatarus.skins.GaugeScaleSkin");
 }

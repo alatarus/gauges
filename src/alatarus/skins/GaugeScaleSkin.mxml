@@ -5,7 +5,7 @@
     xmlns:layouts="alatarus.layouts.*">
     <!-- host component -->
     <fx:Metadata>
-		[HostComponent("alatarus.components.GaugeAxis")]
+		[HostComponent("alatarus.components.GaugeScale")]
 	</fx:Metadata>
 
     <!-- SkinParts

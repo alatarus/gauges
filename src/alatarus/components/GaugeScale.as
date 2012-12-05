@@ -7,7 +7,7 @@ package alatarus.components
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.components.supportClasses.TextBase;
 	
-	public class GaugeAxis extends SkinnableComponent
+	public class GaugeScale extends SkinnableComponent
 	{
 		[SkinPart(required="false", type="mx.core.IVisualElement")]
 		public var majorTickPart:IFactory;
@@ -26,7 +26,7 @@ package alatarus.components
 		
 		private var _ticksAndLabelsDirty:Boolean = false;
 		
-		public function GaugeAxis()
+		public function GaugeScale()
 		{
 			super();
 		}
