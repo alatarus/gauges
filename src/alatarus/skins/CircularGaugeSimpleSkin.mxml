@@ -13,6 +13,7 @@
 
     <!-- SkinParts
     name=marker, type=spark.components.supportClasses.GroupBase, required=false
+    name=scaleDisplay, type=alatarus.components.GaugeScale, required=false
     -->
     <s:Ellipse 
         left="0" right="0" top="0" bottom="0">
@@ -41,6 +42,6 @@
             </s:fill>
         </s:Path>
     </s:Group>
-    <components:GaugeScale id="axis"
+    <components:GaugeScale id="scaleDisplay"
         left="0" right="0" top="0" bottom="0"/>
 </s:Skin>

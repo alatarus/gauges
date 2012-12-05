@@ -9,7 +9,9 @@
         </excludedEntries>
       </libraryPathEntry>
     </libraryPath>
-    <sourceAttachmentPath/>
+    <sourceAttachmentPath>
+      <sourceAttachmentPathEntry index="6" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/charts.swc" sourcepath="${PROJECT_FRAMEWORKS}/projects/charts/src" useDefaultLinkType="true"/>
+    </sourceAttachmentPath>
   </compiler>
   <applications>
     <application path="Gauges.as"/>

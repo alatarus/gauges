@@ -24,7 +24,8 @@ package alatarus.components
 		[SkinPart(required="false")]
 		public var labelsDisplay:Group;
 		
-		private var _ticksAndLabelsDirty:Boolean = false;
+		private var _ticksDirty:Boolean = false;
+		private var _labelsDirty:Boolean = false;
 		
 		public function GaugeScale()
 		{
@@ -65,6 +66,24 @@ package alatarus.components
 			_updateText = true;
 			invalidateProperties();
 		}
+		
+		private var _minorTickCount:int = 3;
+
+		public function get minorTickCount():int
+		{
+			return _minorTickCount;
+		}
+
+		public function set minorTickCount(value:int):void
+		{
+			if (_minorTickCount == value)
+				return;
+			
+			_minorTickCount = value < 0 ? 0 : value;
+			_ticksDirty = true;
+			invalidateProperties();
+		}
+
 
 		private var _minimum:Number = 0;
 
@@ -79,7 +98,8 @@ package alatarus.components
 				return;
 			
 			_minimum = value;
-			_ticksAndLabelsDirty = true;
+			_ticksDirty = true;
+			_labelsDirty = true;
 			invalidateProperties();
 		}
 
@@ -96,7 +116,8 @@ package alatarus.components
 				return;
 			
 			_maximum = value;
-			_ticksAndLabelsDirty = true;
+			_ticksDirty = true;
+			_labelsDirty = true;
 			invalidateProperties();
 		}
 
@@ -113,7 +134,8 @@ package alatarus.components
 				return;
 			
 			_stepSize = value;
-			_ticksAndLabelsDirty = true;
+			_ticksDirty = true;
+			_labelsDirty = true;
 			invalidateProperties();
 		}
 		
@@ -121,6 +143,12 @@ package alatarus.components
 		{
 			if (!labelsDisplay)
 				return;
+			
+			for (var i:int = 0; i < labelsDisplay.numElements; i++)
+			{
+				var labelInstance:TextBase = TextBase(labelsDisplay.getElementAt(i));
+				labelInstance.text = valueToString(stepSize * i);
+			}
 		}
 		
 		private function createLabels():Array
@@ -148,7 +176,7 @@ package alatarus.components
 				return [];
 			
 			var numMajorTicks:int = (maximum - minimum)/stepSize;
-			var numMinorThicks:int = minorTickPart != null ? int(stepSize / 3) : 0;
+			var numMinorThicks:int = minorTickPart != null ? minorTickCount : 0;
 			var majorTickInstance:IVisualElement;
 			var minorTickInstance:IVisualElement;
 			
@@ -190,15 +218,20 @@ package alatarus.components
 		{
 			super.commitProperties();
 			
-			if (_ticksAndLabelsDirty)
+			if (_ticksDirty)
 			{
-				_ticksAndLabelsDirty = false;
-				_updateText = false;
+				_ticksDirty = false;
 				
 				if (ticksDisplay)
 				{
 					ticksDisplay.mxmlContent = createTicks();
 				}
+			}
+			
+			if (_labelsDirty)
+			{
+				_labelsDirty = false;
+				_updateText = false;
 				
 				if (labelsDisplay)
 				{
@@ -207,7 +240,7 @@ package alatarus.components
 			}
 			else if (_updateText)
 			{
-				
+				updateLabels();
 			}
 		}
 		

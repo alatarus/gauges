@@ -13,7 +13,7 @@ package alatarus.components
 		public var marker:UIComponent;
 		
 		[SkinPart(required="false")]
-		public var axis:GaugeScale;
+		public var scaleDisplay:GaugeScale;
 		
 		/**
 		 *  @private
@@ -128,20 +128,20 @@ package alatarus.components
 		{
 			super.partAdded(partName, instance);
 			
-			if (instance === axis)
+			if (instance === scaleDisplay)
 			{
-				axis.minimum = minimum;
-				axis.maximum = maximum;
+				scaleDisplay.minimum = minimum;
+				scaleDisplay.maximum = maximum;
 			}
 		}
 		
 		override protected function commitProperties():void
 		{
-			if (axis && (minChanged || maxChanged))
+			if (scaleDisplay && (minChanged || maxChanged))
 			{
 				super.commitProperties();
-				axis.minimum = minimum;
-				axis.maximum = maximum;
+				scaleDisplay.minimum = minimum;
+				scaleDisplay.maximum = maximum;
 			}
 			else
 			{
