@@ -2,6 +2,10 @@ package alatarus.components
 {
 	import alatarus.components.supportClasses.AnimationTarget;
 	
+	import flash.events.Event;
+	
+	import mx.events.FlexEvent;
+	
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.effects.animation.Animation;
 	import spark.effects.animation.MotionPath;
@@ -97,6 +101,7 @@ package alatarus.components
 		protected var valueChanged:Boolean = false;
 		private var _value:Number = 0;
 
+		[Bindable(event="valueCommit")]
 		/**
 		 *  The current value for this range.
 		 *  
@@ -128,22 +133,24 @@ package alatarus.components
 
 		private var _utilization:Number = 0;
 
+		[Bindable("utilizationChange")]
 		/**
 		 *  The current value of the percentage between the minimum and maximum values.
 		 *  This property  also holds the temporary values set during an animation; the real value is only set
 		 *  when the animation ends.
 		 */
-		protected function get utilization():Number
+		public function get utilization():Number
 		{
 			return _utilization;
 		}
 
-		protected function set utilization(value:Number):void
+		protected function setUtilization(value:Number):void
 		{
 			if (_utilization == value)
 				return;
 			
 			_utilization = value;
+			dispatchEvent(new Event("utilizationChange"));
 		}
 		
 		/**
@@ -165,7 +172,7 @@ package alatarus.components
 			}
 			else
 			{
-				utilization = value;
+				setUtilization(value);
 			}
 		}
 		
@@ -174,7 +181,7 @@ package alatarus.components
 		 */
 		protected function animationUpdateHandler(animation:Animation):void
 		{
-			utilization = animation.currentValue["value"];
+			setUtilization(animation.currentValue["value"]);
 		}
 
 		/**
@@ -196,6 +203,7 @@ package alatarus.components
 			if (valueChanged)
 			{
 				_value = Math.max(_minimum, Math.min(_value, _maximum));
+				dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 			}
 			
 			if (minChanged || maxChanged || valueChanged)

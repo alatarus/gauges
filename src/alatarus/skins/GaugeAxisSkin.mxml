@@ -24,7 +24,7 @@
 			<s:Rect 
 				width="5" height="2">
 				<s:fill>
-					<s:SolidColor color="0x085271"/>
+					<s:SolidColor color="0x000000"/>
 				</s:fill>
 			</s:Rect>
         </fx:Component>

@@ -115,9 +115,9 @@ package alatarus.components
 		/**
 		 * @private
 		 */
-		override protected function set utilization(value:Number):void
+		override protected function setUtilization(value:Number):void
 		{
-			super.utilization = value;
+			super.setUtilization(value);
 			rotateMarker(value);
 		}
 		
@@ -128,11 +128,7 @@ package alatarus.components
 		{
 			super.partAdded(partName, instance);
 			
-			if (instance === marker)
-			{
-				rotateMarker(utilization);
-			}
-			else if (instance === axis)
+			if (instance === axis)
 			{
 				axis.minimum = minimum;
 				axis.maximum = maximum;
@@ -151,6 +147,12 @@ package alatarus.components
 			{
 				super.commitProperties();
 			}
+		}
+		
+		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+		{
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			rotateMarker(utilization);
 		}
 	}
 }

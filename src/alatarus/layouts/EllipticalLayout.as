@@ -75,6 +75,22 @@ package alatarus.layouts
 			return _align;
 		}
 		
+		private var _roundPositions:Boolean;
+
+		public function get roundPositions():Boolean
+		{
+			return _roundPositions;
+		}
+
+		public function set roundPositions(value:Boolean):void
+		{
+			if (_roundPositions == value)
+				return;
+			
+			_roundPositions = value;
+			invalidateTargetSizeAndDisplayList();
+		}
+		
 		private function invalidateTargetSizeAndDisplayList():void
 		{
 			var g:GroupBase = target;
@@ -126,8 +142,14 @@ package alatarus.layouts
 				
 				angle = (startAngle - stepAngle * i) * TO_RADIAN;
 				
-				x = Math.round(radiusX * Math.cos(angle) + radiusX);
-				y = Math.round(radiusY * Math.sin(angle) + radiusY);
+				x = radiusX * Math.cos(angle) + radiusX;
+				y = radiusY * Math.sin(angle) + radiusY;
+				
+				if (_roundPositions)
+				{
+					x = Math.round(x);
+					y = Math.round(y);
+				}
 				
 				var translateX:Number;
 				var translateY:Number;
@@ -135,12 +157,12 @@ package alatarus.layouts
 				switch (align)
 				{
 					case OUTSIDE:
-						translateX = rotateElements ? 0 : -elementWidth * roundTranslateOffcet(1 - x / width);
-						translateY = rotateElements ? -elementHeight * .5 : -elementHeight * roundTranslateOffcet(1 - y / height);
+						translateX = rotateElements ? 0 : -elementWidth * getTranslateOffcet(1 - x / width);
+						translateY = rotateElements ? -elementHeight * .5 : -elementHeight * getTranslateOffcet(1 - y / height);
 						break;
 					case INSIDE:
-						translateX = rotateElements ? -elementWidth : -elementWidth * roundTranslateOffcet(x / width);
-						translateY = rotateElements ? -elementHeight * .5 : -elementHeight * roundTranslateOffcet(y / height);
+						translateX = rotateElements ? -elementWidth : -elementWidth * getTranslateOffcet(x / width);
+						translateY = rotateElements ? -elementHeight * .5 : -elementHeight * getTranslateOffcet(y / height);
 						break;
 					default:
 						translateX = -elementWidth * .5;
@@ -164,9 +186,11 @@ package alatarus.layouts
 			}
 		}
 		
-		private function roundTranslateOffcet(value:Number):Number
+		private function getTranslateOffcet(value:Number):Number
 		{
-			if (value < 0.48)
+			if (!_roundPositions)
+				return value;
+			else if (value < 0.48)
 				return 0;
 			else if (value > 0.52)
 				return 1;

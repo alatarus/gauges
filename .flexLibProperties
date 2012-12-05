@@ -4,6 +4,9 @@
     <classEntry path="alatarus.components.GaugeAxis"/>
     <classEntry path="alatarus.layouts.EllipticalLayout"/>
     <classEntry path="alatarus.skins.GaugeAxisSkin"/>
+    <classEntry path="alatarus.primitives.EllipseSlice"/>
+    <classEntry path="alatarus.primitives.DonutSlice"/>
+    <classEntry path="alatarus.primitives.ISlice"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
